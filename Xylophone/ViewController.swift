@@ -18,17 +18,29 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
-        print("here");
-        playSound()
+//        playSound(info: sender.titleLabel!.text!)
+        playSound(info:sender.currentTitle!)
+        
+        sender.alpha = 0.5;
+        
+        DispatchQueue.main.asyncAfter(deadline:.now()+0.2){
+            sender.alpha = 1;
+        }
     }
     
     
-    func playSound() {
-        let url = Bundle.main.url(forResource: "C", withExtension: "wav")
+    func playSound(info: String) {
+        let url = Bundle.main.url(forResource: info, withExtension: "wav")
         player = try! AVAudioPlayer(contentsOf: url!)
         player.play()
                 
     }
+    
+    //func greeting2(whoTest:String)
+                   //parameter: datatype,  when create a function
+    //when call the function, can use greeting2(whoTest: value)
+    
+    // using ! is means that we have check the value of that, don't worry, will have value because the currentTitle or titleLabel have the ?  which mean optional value.
 }
 
 
